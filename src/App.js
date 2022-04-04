@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense, lazy, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import WebFont from "webfontloader";
+import { Header, Footer, Loader, NotFound } from './components'
+import ProductDetails from './pages/products/components/productDetail';
+import Notifications from 'react-notification-system-redux';
+import Products from './pages/products';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Home = lazy(() => import('./pages/Home'))
+
+const App = () => {
+    useEffect(() => {
+        WebFont.load({
+            google: {
+                families: ["Roboto", "Droid Sans", "Chilanka", "Jura"],
+            },
+        })
+    });
+    return (
+        <Suspense fallback={<Loader />}>
+            <Notifications/>
+            <Header />
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/products' element={<Products />} />
+               
+                <Route path='/product/:id' element={<ProductDetails/>} />
+                <Route path='*' element={<NotFound />} />
+            </Routes>
+            <Footer />
+        </Suspense>
+    )
 }
 
-export default App;
+export default App
