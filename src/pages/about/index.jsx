@@ -1,8 +1,8 @@
 import React from "react";
-import ".AboutSection.css";
 import { Button, Typography, Avatar } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import "../../assets/style/components/about.scss"
 const About = () => {
   const visitInstagram = () => {
     window.location = "https://instagram.com/meabhisingh";

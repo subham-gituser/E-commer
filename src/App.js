@@ -4,7 +4,9 @@ import WebFont from "webfontloader";
 import { Header, Footer, Loader, NotFound } from './components'
 import ProductDetails from './pages/products/components/productDetail';
 import Notifications from 'react-notification-system-redux';
-import Products from './pages/products';
+import Products from './pages/products/index';
+import About from './pages/about/index'
+import Contact from './pages/contact/index'
 
 const Home = lazy(() => import('./pages/Home'))
 
@@ -26,6 +28,8 @@ const App = () => {
                
                 <Route path='/product/:id' element={<ProductDetails/>} />
                 <Route path='*' element={<NotFound />} />
+                <Route path='/About' element={<About />} />
+                <Route path='/Contact' element={<Contact />} />
             </Routes>
             <Footer />
         </Suspense>
